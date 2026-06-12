@@ -32,8 +32,23 @@ function handleComplete(id){
   }));
 }
 
+function toggle(initialState) {
+  const [value, setValue] = useState(initialState);
+  const toggleValue = setValue(prev = !prev);
+  
+  return [value, toggleValue]
+}
+
+function togglebtn() {
+const [val, toggleVal] = toggle(false);
+return <button onClick={toggle}> {val ? "ON" : "OFF"}</button>
+}
+
+
   return (
+    
     <div className= "border border-gray-200 min-h-screen h-[650px] bg-gray-200 w-[500px] m-8 rounded-lg shadow-md ml-[500px]" >
+ <togglebtn />
  <h1 className= " m-0 flex items-center pl-24 pt-4 text-4xl font-bold mb-0">My Todo List:</h1>
  <br />
  <input type="text" placeholder='Add a new task' className="ml-3 mt-0 w-[350px] p-4 rounded border ml-1 m-4 ml-4" value={inputValue}  onChange={(e) =>  setInputValue(e.target.value)} />
