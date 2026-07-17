@@ -1,6 +1,6 @@
 
 import './App.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ToDoItem from './components/ToDoItem';
 
 
@@ -9,6 +9,11 @@ import ToDoItem from './components/ToDoItem';
 
 const [tasks, setTasks] = useState([]);
 const [inputValue, setInputValue] = useState("");
+
+// useEffect(() => {
+//   fetch("http://localhost:8000/tasks").then(res => res.json()).then(data => setTasks(data));
+// }, [])
+
 
 function handleClick(){
   if (inputValue === ""){
@@ -39,9 +44,18 @@ function toggle(initialState) {
   return [value, toggleValue]
 }
 
-function togglebtn() {
-const [val, toggleVal] = toggle(false);
-return <button onClick={toggle}> {val ? "ON" : "OFF"}</button>
+function ToggleBtn() {
+  const [val, setVal] = useState(false);
+
+  function toggleVal() {
+    setVal(prev => !prev);
+  }
+
+  return (
+    <button onClick={toggleVal}>
+      {val ? "ON" : "OFF"}
+    </button>
+  );
 }
 
 

@@ -1,6 +1,10 @@
 //creating the server
 import express from 'express';
+import cors from 'cors';
 const app = express();
+
+//using cors on the app
+app.use(cors());
 
 //uses the given port number or 8000
 const port = process.env.PORT || 8080;
